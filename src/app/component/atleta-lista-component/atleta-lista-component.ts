@@ -68,5 +68,16 @@ export class AtletaListaComponent {
   calcIdade(dataNascimento: string){
     return this.http.calcularIdade(dataNascimento)
   }
+
+  //CLASSIFICA O ESTADO DO PESO A PARTIR DO IMC
+  classificarImc(imc: number): string {
+    if (!imc || imc <= 0) return 'Sem dados'
+    if (imc < 18.5) return 'Abaixo do peso'
+    if (imc < 25) return 'Peso normal'
+    if (imc < 30) return 'Sobrepeso'
+    if (imc < 35) return 'Obesidade Grau I'
+    if (imc < 40) return 'Obesidade Grau II'
+    return 'Obesidade Grau III'
+  }
   
 }//FIM COMPONENT AtletaListaComponent

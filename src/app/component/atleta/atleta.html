@@ -12,13 +12,13 @@
         <input type="text" name="cpf" [(ngModel)] = "cpf" id="cpf" class="input02" required maxlength="14" placeholder="Informe seu cpf">
 
         <label for="peso">Peso</label>
-        <input type="text" name="peso" [(ngModel)] = "peso" id="peso" class="input02" required maxlength="14" placeholder="Informe seu peso" (blur)="calcularImc()">
+        <input type="text" name="peso" [(ngModel)] = "peso" id="peso" class="input02" required maxlength="14" placeholder="Informe seu peso">
 
         <label for="altura">Altura</label>
-        <input type="text" name="altura" [(ngModel)] = "altura" id="altura" class="input02" required maxlength="14" placeholder="Informe sua altura" (blur)="calcularImc()">
+        <input type="text" name="altura" [(ngModel)] = "altura" id="altura" class="input02" required maxlength="14" placeholder="Informe sua altura">
 
         <label for="imc">IMC</label>
-        <input type="text" name="imc" [(ngModel)] = "imc" id="imc" class="input02" disabled placeholder="Calculado automaticamente">
+        <input type="text" name="imc" [value]="imc" id="imc" class="input02" disabled placeholder="Calculado automaticamente">
 
         <label for="sexo">Sexo</label>
         <input type="radio" name="sexo" [(ngModel)] = "sexo" id="sexoM" class="btnSelecao" value="M">Masculino

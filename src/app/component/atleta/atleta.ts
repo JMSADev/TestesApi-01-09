@@ -83,13 +83,22 @@ export class Atleta {
   bairro = ''
   cidade = ''
   uf = ''
-  imc = 0
 
   editar = false
   idAtleta = 0
 
   //DECLARAÇÃO DO CONSTRUTOR  
   constructor(private atletaService: AtletaService, private route: ActivatedRoute, private cdr: ChangeDetectorRef) { }
+
+  //IMC CALCULADO DIRETO DE PESO E ALTURA - SEMPRE ATUALIZADO
+  //ALTURA É DIGITADA EM CENTÍMETROS, POR ISSO A CONVERSÃO / 100
+  get imc(): number {
+    if (this.peso > 0 && this.altura > 0) {
+      const alturaMetros = this.altura / 100
+      return Number((this.peso / (alturaMetros * alturaMetros)).toFixed(2))
+    }
+    return 0
+  }
 
   //DECLARAÇÃO DE FUNÇÕES
   exibeDados() {
@@ -116,7 +125,6 @@ export class Atleta {
           this.cpf = objAtleta.cpf
           this.peso = objAtleta.peso
           this.altura = objAtleta.altura
-          this.imc = objAtleta.imc
           this.sexo = objAtleta.sexo
           this.cep = objAtleta.cep
           this.rua_logradouro = objAtleta.rua_logradouro
@@ -177,14 +185,6 @@ export class Atleta {
 
   }
 
-  calcularImc() {
-    if (this.peso > 0 && this.altura > 0) {
-      this.imc = Number((this.peso / (this.altura * this.altura)).toFixed(2))
-    } else {
-      this.imc = 0
-    }
-  }
-
   listaAtleta(idAtleta: number) {
     this.atletaService.listarAtleta(idAtleta)
       .subscribe({
@@ -202,7 +202,6 @@ export class Atleta {
     this.cpf = 0
     this.peso = 0
     this.altura = 0
-    this.imc = 0
     this.sexo = ''
     this.cep = 0
     this.rua_logradouro = ''
